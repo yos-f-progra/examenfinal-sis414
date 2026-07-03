@@ -1,0 +1,7 @@
+/* Los estilos base (Bootstrap, style.css real del sitio) se cargan en index.html.
+   Este archivo solo tiene el hover del dropdown del menú, que en el sitio real
+   lo maneja jQuery y aquí lo hacemos con CSS puro. */
+
+.main-nav > li:hover > .dropdown-menu {
+  display: block;
+}

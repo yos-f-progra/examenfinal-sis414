@@ -1,4 +1,4 @@
-package bo.edu.potosi.ssu.backend.dto;
+package bo.edu.potosi.ssu.backend.model;
 
 import lombok.Data;
 

@@ -1,14 +1,17 @@
 package bo.edu.potosi.ssu.backend.controller;
 
-import bo.edu.potosi.ssu.backend.dto.AuthResponse;
-import bo.edu.potosi.ssu.backend.dto.LoginRequest;
-import bo.edu.potosi.ssu.backend.dto.RegisterRequest;
+import bo.edu.potosi.ssu.backend.model.AuthResponse;
+import bo.edu.potosi.ssu.backend.model.LoginRequest;
+import bo.edu.potosi.ssu.backend.model.RegisterRequest;
 import bo.edu.potosi.ssu.backend.entity.Usuario;
 import bo.edu.potosi.ssu.backend.repository.UsuarioRepository;
 import bo.edu.potosi.ssu.backend.security.JwtUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Autenticación", description = "Registro e inicio de sesión de usuarios")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -23,6 +26,7 @@ public class AuthController {
         this.jwtUtil = jwtUtil;
     }
 
+    @Operation(summary = "Registrar usuario", description = "Crea una cuenta nueva y devuelve un token JWT.")
     @PostMapping("/register")
     public AuthResponse register(@RequestBody RegisterRequest req) {
         if (usuarioRepository.existsByUsuario(req.getUsuario())) {
@@ -39,6 +43,7 @@ public class AuthController {
         return new AuthResponse(token, u.getUsuario());
     }
 
+    @Operation(summary = "Iniciar sesión", description = "Valida credenciales y devuelve un token JWT.")
     @PostMapping("/login")
     public AuthResponse login(@RequestBody LoginRequest req) {
         Usuario u = usuarioRepository.findByUsuario(req.getUsuario())

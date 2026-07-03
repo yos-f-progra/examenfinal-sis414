@@ -1,6 +1,6 @@
 package bo.edu.potosi.ssu.backend.config;
 
-import bo.edu.potosi.ssu.backend.dto.MensajeError;
+import bo.edu.potosi.ssu.backend.model.MensajeError;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

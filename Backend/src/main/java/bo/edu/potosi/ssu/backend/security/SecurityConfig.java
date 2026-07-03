@@ -49,7 +49,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/contacto").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/contacto/**").permitAll()
                 .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**", "/error").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 

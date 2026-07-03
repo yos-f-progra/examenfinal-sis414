@@ -7,6 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class UsuarioResponse {
     private Long id;
-    private String usuario;
+    private String correo;
     private String nombreCompleto;
 }

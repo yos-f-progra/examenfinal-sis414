@@ -15,7 +15,7 @@ export default function Register() {
     e.preventDefault()
     setError('')
     try {
-      const data = await api.post('/auth/register', { usuario: email, nombreCompleto, contrasena })
+      const data = await api.post('/auth/register', { correo: email, nombreCompleto, contrasena })
       iniciarSesion(data)
       navigate('/reservas')
     } catch (err) {

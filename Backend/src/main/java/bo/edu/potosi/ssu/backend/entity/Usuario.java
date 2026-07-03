@@ -13,7 +13,7 @@ public class Usuario {
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private String usuario;
+    private String correo;
 
     private String nombreCompleto;
 

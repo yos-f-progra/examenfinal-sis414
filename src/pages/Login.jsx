@@ -14,7 +14,7 @@ export default function Login() {
     e.preventDefault()
     setError('')
     try {
-      const data = await api.post('/auth/login', { usuario: email, contrasena })
+      const data = await api.post('/auth/login', { correo: email, contrasena })
       iniciarSesion(data)
       navigate('/reservas')
     } catch (err) {

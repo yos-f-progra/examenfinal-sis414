@@ -34,7 +34,7 @@ public class ReservaController {
     @Operation(summary = "Listar mis reservas", description = "Devuelve las reservas del usuario autenticado.")
     @GetMapping
     public List<ReservaResponse> misReservas(Authentication auth) {
-        Usuario usuario = usuarioRepository.findByUsuario(auth.getName())
+        Usuario usuario = usuarioRepository.findByCorreo(auth.getName())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         return reservaRepository.findByUsuario(usuario).stream()
@@ -45,7 +45,7 @@ public class ReservaController {
     @Operation(summary = "Crear reserva", description = "Crea una nueva reserva de cita para el usuario autenticado.")
     @PostMapping
     public ReservaResponse crear(@RequestBody ReservaRequest req, Authentication auth) {
-        Usuario usuario = usuarioRepository.findByUsuario(auth.getName())
+        Usuario usuario = usuarioRepository.findByCorreo(auth.getName())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         Especialidad especialidad = especialidadRepository.findById(req.getEspecialidadId())
@@ -67,7 +67,7 @@ public class ReservaController {
         Reserva r = reservaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Reserva no encontrada"));
 
-        if (!r.getUsuario().getUsuario().equals(auth.getName())) {
+        if (!r.getUsuario().getCorreo().equals(auth.getName())) {
             throw new RuntimeException("No puede modificar una reserva que no es suya");
         }
 
@@ -88,7 +88,7 @@ public class ReservaController {
         Reserva r = reservaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Reserva no encontrada"));
 
-        if (!r.getUsuario().getUsuario().equals(auth.getName())) {
+        if (!r.getUsuario().getCorreo().equals(auth.getName())) {
             throw new RuntimeException("No puede cancelar una reserva que no es suya");
         }
 

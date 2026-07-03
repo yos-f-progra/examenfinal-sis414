@@ -26,7 +26,7 @@ public class UsuarioController {
     @GetMapping
     public List<UsuarioResponse> listar() {
         return usuarioRepository.findAll().stream()
-                .map(u -> new UsuarioResponse(u.getId(), u.getUsuario(), u.getNombreCompleto()))
+                .map(u -> new UsuarioResponse(u.getId(), u.getCorreo(), u.getNombreCompleto()))
                 .toList();
     }
 
@@ -36,7 +36,7 @@ public class UsuarioController {
         Usuario u = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        return new UsuarioResponse(u.getId(), u.getUsuario(), u.getNombreCompleto());
+        return new UsuarioResponse(u.getId(), u.getCorreo(), u.getNombreCompleto());
     }
 
     @Operation(summary = "Actualizar un usuario", description = "Actualiza el nombre completo de un usuario existente.")
@@ -49,7 +49,7 @@ public class UsuarioController {
         u.setNombreCompleto(req.getNombreCompleto());
         usuarioRepository.save(u);
 
-        return new UsuarioResponse(u.getId(), u.getUsuario(), u.getNombreCompleto());
+        return new UsuarioResponse(u.getId(), u.getCorreo(), u.getNombreCompleto());
     }
 
     @Operation(summary = "Eliminar un usuario", description = "Elimina permanentemente un usuario del sistema.")

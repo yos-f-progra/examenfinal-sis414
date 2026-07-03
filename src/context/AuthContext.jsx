@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
     }
   }, [])
 
-  function iniciarSesion({ token, usuario: nombreUsuario }) {
+  function iniciarSesion({ token, correo: nombreUsuario }) {
     localStorage.setItem('token', token)
     localStorage.setItem('usuario', nombreUsuario)
     setUsuario(nombreUsuario)
